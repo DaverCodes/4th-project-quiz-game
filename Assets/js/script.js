@@ -1,7 +1,10 @@
+const timeLeftSpan = document.querySelector('#time-left');
+
 let startButton = document.getElementById("start-button");
 let nextButton = document.getElementById("next-button");
 let showScore = document.getElementById("show-scores");
 let hideScore = document.getElementById("hide-scores");
+
 
 let titleHead = document.querySelector(".quiz-header");
 let form = document.getElementById("html-Form");
@@ -17,6 +20,8 @@ let scores = [];
 const buttonDiv = document.querySelector(".button-div");
 const questionElem = document.getElementById("question");
 const answerButtonsElem = document.getElementById("question-buttons");
+
+
 
 var questions = [
   {
@@ -128,13 +133,24 @@ function showQuestions(question) {
 }
 
 function countdown() {
+  let seconds = timeLeft;
+  setInterval(function() {
+    seconds--;
+    timeLeftSpan.textContent = seconds;
+    if (seconds === 0) {
+      clearInterval();
+    }
+  }, 1000);
+}
+
+function countdown() {
   startButton.classList.add("hidden");
   titleHead.classList.add("hidden");
   shuffledQues = questions.sort(() => Math.random - 0.5);
   nextQuestion();
   nextButton.classList.add("hidden");
   currentQuestionIndex = 0;
-  form.classList.remove("hidden");
+  // form.classList.remove("hidden");
 }
 
 
@@ -164,7 +180,8 @@ nextButton.addEventListener("click", () => {
 });
 
   
-    
+      form.classList.remove("hidden");
+
 
 
 
