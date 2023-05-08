@@ -1,35 +1,40 @@
-# 04 Web APIs: Code Quiz
+## Coding Quiz Challenge
 
-## Your Task
-
-At some point in your journey to become a full-stack web developer, you’ll likely be asked to complete a coding assessment&mdash;perhaps as part of an interview process. A typical coding assessment includes both multiple-choice questions and interactive coding challenges. 
-
-To help familiarize you with these tests and allow you to use the skills covered in this module, this Challenge invites you to build a timed coding quiz with multiple-choice questions. This app will run in the browser and will feature dynamically updated HTML and CSS powered by JavaScript code that you write. It will have a clean, polished, and responsive user interface. 
-
-This week’s coursework will equip you with all the skills you need to succeed in this assignment.
+This is a simple coding quiz challenge web application built using HTML, CSS, and JavaScript. It presents a user with a set of coding-related questions, and the user must answer them within a time limit. The application also keeps track of the user's score and penalizes incorrect answers.
 
 ## User Story
 
 ```
-
-I WANT to take a timed quiz on JavaScript fundamentals that stores high scores
-SO THAT I can gauge my progress compared to my peers
+AS A up and coming code
+I WANT to take a quiz
+SO THAT I know how well I understand coding
 ```
+## Technologies Used
 
-## Acceptance Criteria
+- HTML
+- CSS
+- JavaScript
 
-```
-GIVEN I am taking a code quiz
-WHEN I click the start button
-THEN a timer starts and I am presented with a question
-WHEN I answer a question
-THEN I am presented with another question
-WHEN I answer a question incorrectly
-THEN time is subtracted from the clock
-WHEN all questions are answered or the timer reaches 0
-THEN the game is over
-WHEN the game is over
-THEN I can save my initials and my score
-```
+## Installation
+
+To use this WeatherWhere, you need to have a web browser installed on your computer.
+
+1. Clone the repository to your local machine using `https://github.com/DaverCodes/quizzer3000`.
+2. Open the `index.html` file in a web browser.
+
+### Usage
+
+<a href="Assets\coding quiz.gif"><img src="Assets\coding quiz.gif"></a>
+
+To use this application, simply open the `index.html` file in a web browser. Once the application is running, the user can click on the "Start Quiz" button to begin the quiz. The user has a total of 75 seconds to answer all of the questions, and each incorrect answer deducts 10 seconds from the remaining time.
+
+Once the user has answered all of the questions, they can enter their initials to save their score. The user can also view the high scores by clicking on the "View Highscores" button.
+
+## Credits
+
+This project was created by https://github.com/DaverCodes. 
 
 
+### License
+
+This project is licensed under the [MIT License](https://opensource.org/licenses/MIT).
