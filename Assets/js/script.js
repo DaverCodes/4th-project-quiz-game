@@ -180,9 +180,6 @@ nextButton.addEventListener("click", () => {
 });
 
   
-      form.classList.remove("hidden");
-
-
 
 
 
