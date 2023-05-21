@@ -5,7 +5,6 @@ let nextButton = document.getElementById("next-button");
 let showScore = document.getElementById("show-scores");
 let hideScore = document.getElementById("hide-scores");
 
-
 let titleHead = document.querySelector(".quiz-header");
 let form = document.getElementById("html-Form");
 let questionContainer = document.getElementById("question-container");
@@ -15,13 +14,9 @@ let currentQuestionIndex = 0;
 let currentScore = 0;
 let scores = [];
 
-
-
 const buttonDiv = document.querySelector(".button-div");
 const questionElem = document.getElementById("question");
 const answerButtonsElem = document.getElementById("question-buttons");
-
-
 
 var questions = [
   {
@@ -112,7 +107,6 @@ function chooseAnswer(selection) {
     statusClass(button, button.dataset.correct);
   });
 
-
   if (shuffledQues.length > currentQuestionIndex + 1) {
     nextButton.classList.remove("hidden");
   } else {
@@ -134,28 +128,28 @@ function showQuestions(question) {
 
 function countdown() {
   let seconds = timeLeft;
-  setInterval(function() {
+  timeLeftSpan.textContent = seconds;
+
+  const countdownInterval = setInterval(() => {
     seconds--;
     timeLeftSpan.textContent = seconds;
+
     if (seconds === 0) {
-      clearInterval();
+      clearInterval(countdownInterval);
+      // Add your logic here for when the timer reaches zero
     }
   }, 1000);
-}
 
-function countdown() {
   startButton.classList.add("hidden");
   titleHead.classList.add("hidden");
-  shuffledQues = questions.sort(() => Math.random - 0.5);
+  shuffledQues = questions.sort(() => Math.random() - 0.5);
   nextQuestion();
   nextButton.classList.add("hidden");
   currentQuestionIndex = 0;
-  // form.classList.remove("hidden");
 }
 
-
 function renderScoresTable(scores) {
-  for (let i = 0; i < length; i++) {}
+  // Logic for rendering scores table
 }
 
 function init() {
@@ -178,7 +172,6 @@ nextButton.addEventListener("click", () => {
   currentQuestionIndex++;
   nextQuestion();
 });
-
   
 
 
