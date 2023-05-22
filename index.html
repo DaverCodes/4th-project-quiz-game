@@ -9,24 +9,6 @@
 
   <body>
     <section class="high-timer">
-      <div id="table-and-scores">
-        <table id="high-scores" class="hidden">
-          <tr>
-            <th>Initials</th>
-            <th>Score</th>
-          </tr>
-          <tr>
-            <td><span id="initials"></span></td>
-            <td><span id="score"></span></td>
-          </tr>
-        </table>
-        <div class="score-buttons">
-          <button class="js-buttons" id="show-scores">View Highscores</button>
-          <button class="js-buttons hidden" id="hide-scores">
-            Hide Scores
-          </button>
-        </div>
-      </div>
       <div id="timer">
         <p>Time: <span id="time-left"></span></p>
       </div>
@@ -38,17 +20,9 @@
       </div>
       <div class="container">
         <div class="question-container">
-          <div id="question">
-            <p>
-              Try to answer the following code-related questions within the time limit. Keep in mind that incorrect answers will penalize your score/time by ten seconds!
-            </p>
-          </div>
-          <div id="question-buttons">
-            <button class="js-buttons hidden"></button>
-            <button class="js-buttons hidden"></button>
-            <button class="js-buttons hidden"></button>
-            <button class="js-buttons hidden"></button>
-          </div>
+          <h2 id="question"></h2>
+          <div id="choices"></div>
+          <button onclick="submitAnswer()">Submit</button>
         </div>
       </div>
       <div class="button-div">
