@@ -213,6 +213,18 @@ function startTimer() {
   }, 1000);
 }
 
+function gameOver() {
+  clearInterval(timer);
+
+  document.getElementById("quiz-screen").style.display = "none";
+  document.getElementById("game-over-screen").style.display = "block";
+}
+
+function playAgain() {
+  document.getElementById("game-over-screen").style.display = "none";
+  document.getElementById("start-screen").style.display = "block";
+}
+
 // showScore.addEventListener("click", () => {
 //   showScore.classList.add("hidden");
 // });
