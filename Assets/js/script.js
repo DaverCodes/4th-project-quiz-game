@@ -1,23 +1,27 @@
 // const timeLeftSpan = document.querySelector('#time-left');
 
-let startButton = document.getElementById("start-button");
-let nextButton = document.getElementById("next-button");
-let showScore = document.getElementById("show-scores");
-let hideScore = document.getElementById("hide-scores");
+// let startButton = document.getElementById("start-button");
+// let nextButton = document.getElementById("next-button");
+// let showScore = document.getElementById("show-scores");
+// let hideScore = document.getElementById("hide-scores");
 
-let titleHead = document.querySelector(".quiz-header");
-let form = document.getElementById("html-Form");
-let questionContainer = document.getElementById("question-container");
-let timeLeft = 75;
-let timer;
-// let shuffledQues = [];
+// let titleHead = document.querySelector(".quiz-header");
+// let form = document.getElementById("html-Form");
+// let questionContainer = document.getElementById("question-container");
+// let timeLeft = 75;
+// let timer;
+// // let shuffledQues = [];
+// let currentQuestionIndex = 0;
+// let currentScore = 0;
+// // let scores = [];
+
+// const buttonDiv = document.querySelector(".button-div");
+// const questionElem = document.getElementById("question");
+// const answerButtonsElem = document.getElementById("question-buttons");
+
 let currentQuestionIndex = 0;
-let currentScore = 0;
-// let scores = [];
-
-const buttonDiv = document.querySelector(".button-div");
-const questionElem = document.getElementById("question");
-const answerButtonsElem = document.getElementById("question-buttons");
+let score = 0;
+let timer;
 
 var questions = [
   {
@@ -72,33 +76,33 @@ var questions = [
   },
 ];
 
-function nextQuestion() {
-  clearPage();
-  showQuestions(shuffledQues[currentQuestionIndex]);
-}
+// function nextQuestion() {
+//   clearPage();
+//   showQuestions(shuffledQues[currentQuestionIndex]);
+// }
 
-function clearPage() {
-  nextButton.classList.add("hidden");
-  while (answerButtonsElem.firstChild) {
-    answerButtonsElem.removeChild(answerButtonsElem.firstChild);
-  }
-}
+// function clearPage() {
+//   nextButton.classList.add("hidden");
+//   while (answerButtonsElem.firstChild) {
+//     answerButtonsElem.removeChild(answerButtonsElem.firstChild);
+//   }
+// }
 
-function statusClass(element, correct) {
-  clearStatus(element);
-  if (correct === "true") {
-    element.classList.add("correct");
-    element.classList.remove("js-buttons");
-  } else {
-    element.classList.add("incorrect");
-    element.classList.remove("js-buttons");
-  }
-}
+// function statusClass(element, correct) {
+//   clearStatus(element);
+//   if (correct === "true") {
+//     element.classList.add("correct");
+//     element.classList.remove("js-buttons");
+//   } else {
+//     element.classList.add("incorrect");
+//     element.classList.remove("js-buttons");
+//   }
+// }
 
-function clearStatus(element) {
-  element.classList.remove("correct");
-  element.classList.remove("incorrect");
-}
+// function clearStatus(element) {
+//   element.classList.remove("correct");
+//   element.classList.remove("incorrect");
+// }
 
 function submitAnswer() {
   const selectedAnswer = document.querySelector('input[name="answer"]:checked');
