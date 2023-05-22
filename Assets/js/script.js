@@ -1,4 +1,4 @@
-const timeLeftSpan = document.querySelector('#time-left');
+// const timeLeftSpan = document.querySelector('#time-left');
 
 let startButton = document.getElementById("start-button");
 let nextButton = document.getElementById("next-button");
@@ -9,10 +9,11 @@ let titleHead = document.querySelector(".quiz-header");
 let form = document.getElementById("html-Form");
 let questionContainer = document.getElementById("question-container");
 let timeLeft = 75;
-let shuffledQues = [];
+let timer;
+// let shuffledQues = [];
 let currentQuestionIndex = 0;
 let currentScore = 0;
-let scores = [];
+// let scores = [];
 
 const buttonDiv = document.querySelector(".button-div");
 const questionElem = document.getElementById("question");
@@ -99,20 +100,22 @@ function clearStatus(element) {
   element.classList.remove("incorrect");
 }
 
-function chooseAnswer(selection) {
-  const selectButton = selection.target;
-  const correct = selectButton.dataset.correct;
-  statusClass(selectButton, correct);
-  Array.from(answerButtonsElem.children).forEach((button) => {
-    statusClass(button, button.dataset.correct);
-  });
-
-  if (shuffledQues.length > currentQuestionIndex + 1) {
-    nextButton.classList.remove("hidden");
-  } else {
-    nextButton.classList.add("hidden");
+function submitAnswer() {
+  const selectedAnswer = document.querySelector('input[name="answer"]:checked');
+  if (!selectedAnswer) {
+    alert("Please select an answer.");
+    return;
   }
+
+
+  if (playerAnswer === correctAnswer) {
+    score++;
+  }
+
+  currentQuestionIndex++;
+  showQuestion();
 }
+
 
 function showQuestions(question) {
   questionElem.textContent = question.question;
@@ -158,20 +161,70 @@ function init() {
 
 init();
 
-startButton.addEventListener("click", countdown);
+function startQuiz() {
+  const playerName = document.getElementById("name-input").value;
+  if (playerName === "") {
+    alert("Please enter your name.");
+    return;
+  }
 
-showScore.addEventListener("click", () => {
-  showScore.classList.add("hidden");
-});
+  document.getElementById("start-screen").style.display = "none";
+  document.getElementById("quiz-screen").style.display = "block";
 
-hideScore.addEventListener("click", () => {
-  showScore.classList.remove("hidden");
-});
+  showQuestion();
+  startTimer();
+}
 
-nextButton.addEventListener("click", () => {
-  currentQuestionIndex++;
-  nextQuestion();
-});
+
+function showQuestion() {
+  if (currentQuestionIndex >= questions.length) {
+    gameOver();
+    return;
+  }
+
+  const questionElement = document.getElementById("question");
+  questionElement.textContent = questions[currentQuestionIndex].question;
+
+  const choicesElement = document.getElementById("choices");
+  choicesElement.innerHTML = ""; // Clear previous choices
+
+  const choices = questions[currentQuestionIndex].choices;
+  for (let i = 0; i < choices.length; i++) {
+    const choiceElement = document.createElement("div");
+    choiceElement.innerHTML = `
+      <input type="radio" name="answer" value="${i}">
+      <label>${choices[i]}</label>
+    `;
+    choicesElement.appendChild(choiceElement);
+  }
+}
+
+
+function startTimer() {
+  let timeLeft = 30;
+  timer = setInterval(() => {
+    if (timeLeft > 0) {
+      document.getElementById("timer").textContent = `Time Left: ${timeLeft}s`;
+      timeLeft--;
+    } else {
+      clearInterval(timer);
+      gameOver();
+    }
+  }, 1000);
+}
+
+// showScore.addEventListener("click", () => {
+//   showScore.classList.add("hidden");
+// });
+
+// hideScore.addEventListener("click", () => {
+//   showScore.classList.remove("hidden");
+// });
+
+// nextButton.addEventListener("click", () => {
+//   currentQuestionIndex++;
+//   nextQuestion();
+// });
   
 
 
