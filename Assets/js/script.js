@@ -121,52 +121,6 @@ function startQuiz() {
 
 document.getElementById("start-button").addEventListener("click", startQuiz);
 
-function submitAnswer() {
-  const selectedAnswer = document.querySelector('input[name="answer"]:checked');
-  if (!selectedAnswer) {
-    alert("Please select an answer.");
-    return;
-  }
-  
-
-  if (playerAnswer === correctAnswer) {
-    score++;
-  }
-  
-  currentQuestionIndex++;
-  showQuestion();
-}
-
-function countdown() {
-  let seconds = timeLeft;
-  timeLeftSpan.textContent = seconds;
-  
-  const countdownInterval = setInterval(() => {
-    seconds--;
-    timeLeftSpan.textContent = seconds;
-    
-    if (seconds === 0) {
-      clearInterval(countdownInterval);
-      // Add your logic here for when the timer reaches zero
-    }
-  }, 1000);
-  
-  startButton.classList.add("hidden");
-  titleHead.classList.add("hidden");
-  shuffledQues = questions.sort(() => Math.random() - 0.5);
-  nextQuestion();
-  nextButton.classList.add("hidden");
-  currentQuestionIndex = 0;
-}
-
-function renderScoresTable(scores) {
-  // Logic for rendering scores table
-}
-
-function init() {
-  renderScoresTable(scores);
-}
-
 function showQuestion() {
   if (currentQuestionIndex >= questions.length) {
     gameOver();
@@ -190,6 +144,21 @@ function showQuestion() {
   }
 }
 
+function submitAnswer() {
+  const selectedAnswer = document.querySelector('input[name="answer"]:checked');
+  if (!selectedAnswer) {
+    alert("Please select an answer.");
+    return;
+  }
+  
+
+  if (playerAnswer === correctAnswer) {
+    score++;
+  }
+  
+  currentQuestionIndex++;
+  showQuestion();
+}
 
 function startTimer() {
   let timeLeft = 30;
@@ -203,6 +172,13 @@ function startTimer() {
     }
   }, 1000);
 }
+
+function saveScore(playerName, score) {
+  const scores = localStorage.getItem("scores") ? JSON.parse(localStorage.getItem("scores")) : [];
+  scores.push({ name: playerName, score: score });
+  localStorage.setItem("scores", JSON.stringify(scores));
+}
+
 
 function gameOver() {
   clearInterval(timer);
@@ -242,5 +218,34 @@ function playAgain() {
   //   });
   // }
   
+ // function countdown() {
+//   let seconds = timeLeft;
+//   timeLeftSpan.textContent = seconds;
   
+//   const countdownInterval = setInterval(() => {
+//     seconds--;
+//     timeLeftSpan.textContent = seconds;
+    
+//     if (seconds === 0) {
+//       clearInterval(countdownInterval);
+//       // Add your logic here for when the timer reaches zero
+//     }
+//   }, 1000);
   
+//   startButton.classList.add("hidden");
+//   titleHead.classList.add("hidden");
+//   shuffledQues = questions.sort(() => Math.random() - 0.5);
+//   nextQuestion();
+//   nextButton.classList.add("hidden");
+//   currentQuestionIndex = 0;
+// }
+  
+
+// function renderScoresTable(scores) {
+//   // Logic for rendering scores table
+// }
+
+
+// function init() {
+//   renderScoresTable(scores);
+// }
