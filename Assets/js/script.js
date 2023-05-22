@@ -104,49 +104,53 @@ var questions = [
 //   element.classList.remove("incorrect");
 // }
 
+
+function startQuiz() {
+  const playerName = document.getElementById("name-input").value;
+  if (playerName === "") {
+    alert("Please enter your name.");
+    return;
+  }
+
+  document.getElementById("start-screen").style.display = "none";
+  document.getElementById("quiz-screen").style.display = "block";
+
+  showQuestion();
+  startTimer();
+}
+
+document.getElementById("start-button").addEventListener("click", startQuiz);
+
 function submitAnswer() {
   const selectedAnswer = document.querySelector('input[name="answer"]:checked');
   if (!selectedAnswer) {
     alert("Please select an answer.");
     return;
   }
-
+  
 
   if (playerAnswer === correctAnswer) {
     score++;
   }
-
+  
   currentQuestionIndex++;
   showQuestion();
-}
-
-
-function showQuestions(question) {
-  questionElem.textContent = question.question;
-  question.answers.forEach((answer) => {
-    const button = document.createElement("button");
-    button.textContent = answer.text;
-    button.classList.add("js-buttons");
-    button.dataset.correct = answer.correct;
-    button.addEventListener("click", chooseAnswer);
-    answerButtonsElem.appendChild(button);
-  });
 }
 
 function countdown() {
   let seconds = timeLeft;
   timeLeftSpan.textContent = seconds;
-
+  
   const countdownInterval = setInterval(() => {
     seconds--;
     timeLeftSpan.textContent = seconds;
-
+    
     if (seconds === 0) {
       clearInterval(countdownInterval);
       // Add your logic here for when the timer reaches zero
     }
   }, 1000);
-
+  
   startButton.classList.add("hidden");
   titleHead.classList.add("hidden");
   shuffledQues = questions.sort(() => Math.random() - 0.5);
@@ -163,41 +167,24 @@ function init() {
   renderScoresTable(scores);
 }
 
-init();
-
-function startQuiz() {
-  const playerName = document.getElementById("name-input").value;
-  if (playerName === "") {
-    alert("Please enter your name.");
-    return;
-  }
-
-  document.getElementById("start-screen").style.display = "none";
-  document.getElementById("quiz-screen").style.display = "block";
-
-  showQuestion();
-  startTimer();
-}
-
-
 function showQuestion() {
   if (currentQuestionIndex >= questions.length) {
     gameOver();
     return;
   }
-
+  
   const questionElement = document.getElementById("question");
   questionElement.textContent = questions[currentQuestionIndex].question;
-
+  
   const choicesElement = document.getElementById("choices");
   choicesElement.innerHTML = ""; // Clear previous choices
-
+  
   const choices = questions[currentQuestionIndex].choices;
   for (let i = 0; i < choices.length; i++) {
     const choiceElement = document.createElement("div");
     choiceElement.innerHTML = `
-      <input type="radio" name="answer" value="${i}">
-      <label>${choices[i]}</label>
+    <input type="radio" name="answer" value="${i}">
+    <label>${choices[i]}</label>
     `;
     choicesElement.appendChild(choiceElement);
   }
@@ -219,7 +206,7 @@ function startTimer() {
 
 function gameOver() {
   clearInterval(timer);
-
+  
   document.getElementById("quiz-screen").style.display = "none";
   document.getElementById("game-over-screen").style.display = "block";
 }
@@ -230,19 +217,30 @@ function playAgain() {
 }
 
 // showScore.addEventListener("click", () => {
-//   showScore.classList.add("hidden");
-// });
-
-// hideScore.addEventListener("click", () => {
+  //   showScore.classList.add("hidden");
+  // });
+  
+  // hideScore.addEventListener("click", () => {
 //   showScore.classList.remove("hidden");
 // });
 
 // nextButton.addEventListener("click", () => {
-//   currentQuestionIndex++;
-//   nextQuestion();
-// });
+  //   currentQuestionIndex++;
+  //   nextQuestion();
+  // });
   
-
-
-
+  
+  // function showQuestions(question) {
+  //   questionElem.textContent = question.question;
+  //   question.answers.forEach((answer) => {
+  //     const button = document.createElement("button");
+  //     button.textContent = answer.text;
+  //     button.classList.add("js-buttons");
+  //     button.dataset.correct = answer.correct;
+  //     button.addEventListener("click", chooseAnswer);
+  //     answerButtonsElem.appendChild(button);
+  //   });
+  // }
+  
+  
   
