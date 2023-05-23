@@ -21,6 +21,9 @@
 
   ## Usage
 
+  ![Alt Text](./Assets/images/code%20quiz.gif)
+
+
   I expect the user to access this repo and use it through the deployment page, but it can be run in localhost through (npm start)
 
   ## License
