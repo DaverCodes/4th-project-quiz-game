@@ -1,24 +1,3 @@
-// const timeLeftSpan = document.querySelector('#time-left');
-
-// let startButton = document.getElementById("start-button");
-// let nextButton = document.getElementById("next-button");
-// let showScore = document.getElementById("show-scores");
-// let hideScore = document.getElementById("hide-scores");
-
-// let titleHead = document.querySelector(".quiz-header");
-// let form = document.getElementById("html-Form");
-// let questionContainer = document.getElementById("question-container");
-// let timeLeft = 75;
-// let timer;
-// // let shuffledQues = [];
-// let currentQuestionIndex = 0;
-// let currentScore = 0;
-// // let scores = [];
-
-// const buttonDiv = document.querySelector(".button-div");
-// const questionElem = document.getElementById("question");
-// const answerButtonsElem = document.getElementById("question-buttons");
-
 let currentQuestionIndex = 0;
 let score = 0;
 let timer;
@@ -75,35 +54,6 @@ var questions = [
     ],
   },
 ];
-
-// function nextQuestion() {
-//   clearPage();
-//   showQuestions(shuffledQues[currentQuestionIndex]);
-// }
-
-// function clearPage() {
-//   nextButton.classList.add("hidden");
-//   while (answerButtonsElem.firstChild) {
-//     answerButtonsElem.removeChild(answerButtonsElem.firstChild);
-//   }
-// }
-
-// function statusClass(element, correct) {
-//   clearStatus(element);
-//   if (correct === "true") {
-//     element.classList.add("correct");
-//     element.classList.remove("js-buttons");
-//   } else {
-//     element.classList.add("incorrect");
-//     element.classList.remove("js-buttons");
-//   }
-// }
-
-// function clearStatus(element) {
-//   element.classList.remove("correct");
-//   element.classList.remove("incorrect");
-// }
-
 
 function startQuiz() {
   const playerName = document.getElementById("name-input").value;
@@ -179,6 +129,22 @@ function saveScore(playerName, score) {
   localStorage.setItem("scores", JSON.stringify(scores));
 }
 
+function displayHighScores() {
+  const scores = localStorage.getItem("scores");
+  if (scores) {
+    const parsedScores = JSON.parse(scores);
+    const sortedScores = parsedScores.sort((a, b) => b.score - a.score);
+
+    const highScoresList = document.getElementById("high-scores");
+    highScoresList.innerHTML = ""; 
+
+    sortedScores.forEach((entry, index) => {
+      const listItem = document.createElement("li");
+      listItem.textContent = `${index + 1}. ${entry.name}: ${entry.score} points`;
+      highScoresList.appendChild(listItem);
+    });
+  }
+}
 
 function gameOver() {
   clearInterval(timer);
@@ -249,3 +215,64 @@ function playAgain() {
 // function init() {
 //   renderScoresTable(scores);
 // }
+
+// function nextQuestion() {
+//   clearPage();
+//   showQuestions(shuffledQues[currentQuestionIndex]);
+// }
+
+// function clearPage() {
+//   nextButton.classList.add("hidden");
+//   while (answerButtonsElem.firstChild) {
+//     answerButtonsElem.removeChild(answerButtonsElem.firstChild);
+//   }
+// }
+
+// function nextQuestion() {
+//   clearPage();
+//   showQuestions(shuffledQues[currentQuestionIndex]);
+// }
+
+// function clearPage() {
+//   nextButton.classList.add("hidden");
+//   while (answerButtonsElem.firstChild) {
+//     answerButtonsElem.removeChild(answerButtonsElem.firstChild);
+//   }
+// }
+
+// function statusClass(element, correct) {
+//   clearStatus(element);
+//   if (correct === "true") {
+//     element.classList.add("correct");
+//     element.classList.remove("js-buttons");
+//   } else {
+//     element.classList.add("incorrect");
+//     element.classList.remove("js-buttons");
+//   }
+// }
+
+// function clearStatus(element) {
+//   element.classList.remove("correct");
+//   element.classList.remove("incorrect");
+// }
+
+// const timeLeftSpan = document.querySelector('#time-left');
+
+// let startButton = document.getElementById("start-button");
+// let nextButton = document.getElementById("next-button");
+// let showScore = document.getElementById("show-scores");
+// let hideScore = document.getElementById("hide-scores");
+
+// let titleHead = document.querySelector(".quiz-header");
+// let form = document.getElementById("html-Form");
+// let questionContainer = document.getElementById("question-container");
+// let timeLeft = 75;
+// let timer;
+// // let shuffledQues = [];
+// let currentQuestionIndex = 0;
+// let currentScore = 0;
+// // let scores = [];
+
+// const buttonDiv = document.querySelector(".button-div");
+// const questionElem = document.getElementById("question");
+// const answerButtonsElem = document.getElementById("question-buttons");
